@@ -1,4 +1,10 @@
-const playBoard = (() => {
+const playBoard = () => {
+  const scoreRecord = ((name, symbol, wins) => {
+    let getName = () => name;
+    let getSymbol = () => symbol;
+    let getWins = () => wins;
+  });  
+  
   const blankBoard = ['', '', '', '', '', '', '', '', ''];
   const winningBoard = [
     [0, 1, 2],
