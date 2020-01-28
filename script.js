@@ -3,6 +3,9 @@ const playBoard = () => {
     let getName = () => name;
     let getSymbol = () => symbol;
     let getWins = () => wins;
+    const setName = (playerName) => (name = playerName)
+
+    return { getName, getSymbol, getWins };
   });  
   
   const blankBoard = ['', '', '', '', '', '', '', '', ''];
