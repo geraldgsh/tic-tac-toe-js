@@ -9,43 +9,46 @@ const playerGenerator = (name, mark, wins) => {
 const gameEngine = (() => {
   console.log("game engine started");
   // declaration of the players
-  var player1 = playerGenerator(player1Name, "X", 0);
-  var player2 = playerGenerator(player2Name, "O", 0);
+  var player1 = playerGenerator("", "X", 0);
+  var player2 = playerGenerator("", "O", 0);
 
   const start = () => {
     var sq = document.getElementById("squares");
-    sq.style.display = "grid";
-    newPlayer();
+    newPlayer(player1);
+    newPlayer(player2);
+    if (checkNames(player1.name, player2.name)) {
+      sq.style.display = "grid";
+    }
   };
 
   const startBtn = document.querySelector(".startButton");
   startBtn.addEventListener("click", start);
 
-  const newPlayer = () => {
+  const newPlayer = player => {
     // global variable declaration
-    let player1Name = document.querySelector("#playerOneName").value;
-    console.log(`first: ${player1Name}`);
-        
-    let player2Name = document.querySelector("#playerTwoName").value;
-    console.log(`second: ${player2Name}`);
+    if (player === player1) {
+      let player1Name = document.querySelector("#playerOneName").value;
+      player1.name = player1Name;
+    } else {
+      let player2Name = document.querySelector("#playerTwoName").value;
+      player2.name = player2Name;
+    }
+  };
 
-    const checkNames = (name1, name2) => {
-      if (name1 === "" || name2 === "") {
-        setStatus("Names can't be blank!");
-      }
-    };
-    checkNames(player1Name, player2Name);
+  const checkNames = (name1, name2) => {
+    if (name1 === "" || name2 === "") {
+      setStatus("Names can't be blank!");
+      return false;
+    }
 
-  }
-
+    return true;
+  };
 
   const gameStatus = document.querySelector(".game-status");
   const setStatus = status => {
     gameStatus.innerHTML = "";
     gameStatus.innerHTML += status.toString();
   };
-
-
 
   console.warn(player1, player2);
 
