@@ -24,8 +24,13 @@ const gameEngine = (() => {
   };
 
   // global variable declaration
-  const player1Name = document.querySelector("#playerOneName").value;
-  const player2Name = document.querySelector("#playerTwoName").value;
+  let player1Name = document.querySelector("#playerOneName").value;
+  console.log(`first: ${player1Name}`);
+  // player1Name = player1.name;
+  let player2Name = document.querySelector("#playerTwoName").value;
+  console.log(`second: ${player2Name}`);
+  // player1Name = player1.name;
+
   const checkNames = (name1, name2) => {
     if (name1 === "" || name2 === "") {
       setStatus("Names can't be blank!");
@@ -34,8 +39,9 @@ const gameEngine = (() => {
   checkNames(player1Name, player2Name);
 
   // declaration of the players
-  const player1 = playerGenerator(player1Name, "X", 0);
-  const player2 = playerGenerator(player2Name, "O", 0);
+  const player1 = playerGenerator("", "X", 0);
+  const player2 = playerGenerator("", "O", 0);
+
   console.warn(player1, player2);
 
   let numPlays = 0;
@@ -53,11 +59,10 @@ const gameEngine = (() => {
   const changePlayers = () => {
     if (currPlayer === player1) {
       currPlayer = player2;
-      setStatus(`It's ${currPlayer.name}'s turn!`);
     } else {
       currPlayer = player1;
-      setStatus(`It's ${currPlayer.name}'s turn!`);
     }
+    setStatus(`It's ${currPlayer.name}'s turn!`);
   };
 
   const checkPlay = (cells, cellNum) => {
