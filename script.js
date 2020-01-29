@@ -1,3 +1,19 @@
+const playBoard = (() => {
+  const gridBoard = ['', '', '', '', '', '', '', '', ''];
+  const winningCombination = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8]
+  ];
+  
+  return { gridBoard, winningCombination};
+})();
+
 const playerGenerator = (name, mark, wins) => {
   return {
     name,
@@ -73,11 +89,31 @@ const gameEngine = (() => {
     setStatus(`It's ${currPlayer.name}'s turn!`);
   };
 
-  const checkPlay = (cells, cellNum) => {
-    if (board[cellNum] === "") {
-      board[cellNum] = currPlayer.mark;
-      cells[cellNum].innerHTML += currPlayer.mark;
-      changePlayers();
+  const checkWinner = () => {
+    if (
+      (playBoard.gridBoard[0]  && playBoard.gridBoard[1]  && playBoard.gridBoard[2] ) ||
+      (playBoard.gridBoard[3]  && playBoard.gridBoard[4]  && playBoard.gridBoard[5] ) ||
+      (playBoard.gridBoard[6]  && playBoard.gridBoard[7]  && playBoard.gridBoard[8] ) ||
+      (playBoard.gridBoard[0]  && playBoard.gridBoard[3]  && playBoard.gridBoard[6] ) ||
+      (playBoard.gridBoard[1]  && playBoard.gridBoard[4]  && playBoard.gridBoard[7] ) ||
+      (playBoard.gridBoard[2]  && playBoard.gridBoard[5]  && playBoard.gridBoard[8] ) ||
+      (playBoard.gridBoard[0]  && playBoard.gridBoard[4]  && playBoard.gridBoard[8] ) ||
+      (playBoard.gridBoard[2]  && playBoard.gridBoard[4]  && playBoard.gridBoard[6] )
+    ) {
+      console.warn("Win!");
     }
   };
+
+  const checkPlay = (cells, cellNum) => {    
+    if (playBoard.gridBoard[cellNum] === "") {
+      playBoard.gridBoard[cellNum] = currPlayer.mark;
+      cells[cellNum].innerHTML += currPlayer.mark;
+      changePlayers();      
+      numPlays ++;
+      checkWinner();
+      if (numPlays > 8) {
+        console.log("Tie!");
+      }
+    }
+  };  
 })();
