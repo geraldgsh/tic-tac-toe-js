@@ -1,33 +1,43 @@
-const gameEngine = () => {
+const playerGenerator = (name, mark, wins) => {
+  return {
+    name,
+    mark,
+    wins
+  };
+};
+
+const gameEngine = (() => {
   console.log("game engine started");
 
+  const start = () => {
+    var sq = document.getElementById('squares');
+    sq.style.display = "grid";
+  }  
+  const startBtn = document.querySelector('.startButton');
+  startBtn.addEventListener('click', start);
+  
+
+  const newPlayer = () => {}
+  
   // global variable declaration
   const player1Name = document.querySelector("#playerOneName").value;
   const player2Name = document.querySelector("#playerTwoName").value;
-  const gameStatus = document.querySelector(".game-status");
-  let numPlays = 0;
-
   const checkNames = (name1, name2) => {
     if (name1 === "" || name2 === "") {
       return alert("names cant be blank");
     }
   };
-
   checkNames(player1Name, player2Name);
-
-  const playerFactory = (name, mark) => {
-    return {
-      name,
-      mark
-    };
-  };
+  
 
   // declaration of the players
-  const player1 = playerFactory(player1Name, "X");
-  const player2 = playerFactory(player2Name, "O");
-  let currPlayer = player1;
-
+  const player1 = playerGenerator(player1Name, "X", 0);
+  const player2 = playerGenerator(player2Name, "O", 0);
   console.warn(player1, player2);
+
+  const gameStatus = document.querySelector(".game-status");
+  let numPlays = 0;
+  let currPlayer = player1;
 
   let board = ["", "", "", "", "", "", "", "", ""];
   let cells = document.querySelectorAll(".cell");
@@ -66,4 +76,4 @@ const gameEngine = () => {
   // const restart = () => {
 
   // }
-};
+})();

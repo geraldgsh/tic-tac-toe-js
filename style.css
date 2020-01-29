@@ -7,7 +7,7 @@ section {
 }
 
 .game--container {
-    display: grid;
+    display: none;
     grid-template-columns: repeat(3, auto);
     width: 306px;
     margin: 50px auto;

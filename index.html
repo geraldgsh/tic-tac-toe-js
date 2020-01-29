@@ -14,7 +14,7 @@
   <section>
     <h1 class="game--title">Tic Tac Toe</h1>
     <h2 class="game-status"></h2>
-    <div class="game--container">
+    <div class="game--container" id="squares">
       <div data-index="0" class="cell"></div>
       <div data-index="1" class="cell"></div>
       <div data-index="2" class="cell"></div>
@@ -33,7 +33,7 @@
         <input type="text" id="playerTwoName" placeholder="Player Two">
       </div>
       <div id="buttonsContainer">
-        <button id="startButton" onclick="gameEngine()">Start New Game!</button>
+        <button class="startButton">Start New Game!</button>
         <button id="endGameButton">End Current Game</button>
       </div>
     </div>
