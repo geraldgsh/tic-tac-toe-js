@@ -1,47 +1,69 @@
-const playBoard = () => {
-  const scoreRecord = ((name, symbol, wins) => {
-    let getName = () => name;
-    let getSymbol = () => symbol;
-    let getWins = () => wins;
-    const setName = (playerName) => (name = playerName)
+const gameEngine = () => {
+  console.log("game engine started");
 
-    return { getName, getSymbol, getWins };
-  });  
-  
-  const blankBoard = ['', '', '', '', '', '', '', '', ''];
-  const winningBoard = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8]
-  ]; 
-});
+  // global variable declaration
+  const player1Name = document.querySelector("#playerOneName").value;
+  const player2Name = document.querySelector("#playerTwoName").value;
+  const gameStatus = document.querySelector(".game-status");
+  let numPlays = 0;
 
-
-const gameplay = (() => {
-  const squares = Array.from(document.querySelectorAll('#board div'));
-  document.getElementById('board').addEventListener('click', handleTurn);
-  let board;
-  let turn = 'X';  
-  
-  function render() {
-    board.forEach(function(mark, index) {
-    //this moves the value of the board item into the squares[idx]
-      squares[index].textContent = mark;
-    });
+  const checkNames = (name1, name2) => {
+    if (name1 === "" || name2 === "") {
+      return alert("names cant be blank");
+    }
   };
 
-  function handleTurn() {
-    let idx = squares.findIndex(function(square) {
-      return square === event.target;
-    })
-    board[idx] = turn;
-    turn = turn === 'X' ? 'O' : 'X';
-    render()
-  }
+  checkNames(player1Name, player2Name);
 
-});
+  const playerFactory = (name, mark) => {
+    return {
+      name,
+      mark
+    };
+  };
+
+  // declaration of the players
+  const player1 = playerFactory(player1Name, "X");
+  const player2 = playerFactory(player2Name, "O");
+  let currPlayer = player1;
+
+  console.warn(player1, player2);
+
+  let board = ["", "", "", "", "", "", "", "", ""];
+  let cells = document.querySelectorAll(".cell");
+
+  cells.forEach(cell => {
+    cell.addEventListener("click", function () {
+      checkPlay(cells, this.dataset.index)
+    });
+  });
+
+  const changePlayers = currPlayer => {
+    if (currPlayer === player1) {
+      return currPlayer = player2;
+    } else {
+      return currPlayer = player1;
+    }
+  };
+
+  const checkPlay = (cells, cellNum) => {
+    if (board[cellNum] === "") {
+      board[cellNum] = currPlayer.mark;
+      cells[cellNum].innerHTML += currPlayer.mark;
+      changePlayers(currPlayer);
+    }
+  };
+
+  const setStatus = status => {
+    gameStatus.innerHTML = "";
+    gameStatus.innerHTML += status.toString();
+  };
+
+  // const gameplay = () => {
+  //   while (gameComplete()) {}
+  // };
+
+  // const restart = () => {
+
+  // }
+};
