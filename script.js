@@ -11,7 +11,10 @@ const playBoard = (() => {
     [2, 5, 8]
   ];
 
-  return { gridBoard, winningCombination };
+  return {
+    gridBoard,
+    winningCombination
+  };
 })();
 
 const playerGenerator = (name, mark, wins, playArr) => {
@@ -77,7 +80,7 @@ const gameEngine = (() => {
   let cells = document.querySelectorAll(".cell");
 
   cells.forEach(cell => {
-    cell.addEventListener("click", function() {
+    cell.addEventListener("click", function () {
       checkPlay(cells, this.dataset.index);
     });
   });
@@ -105,6 +108,10 @@ const gameEngine = (() => {
       currPlayer.playArr.push(parseInt(cellNum));
 
       if (checkWinner(currPlayer.playArr)) {
+        const modal = document.querySelector('.modal');
+        modal.style.display = "block";
+        const okayBtn = document.querySelector('.okay');
+        okayBtn.addEventListener('click', newRound);
         endGame();
       } else {
         changePlayers();
@@ -123,9 +130,15 @@ const gameEngine = (() => {
     Object.freeze(playBoard.gridBoard);
     setStatus(`${currPlayer.name} won!`);
     cells.forEach(cell => {
-      cell.removeEventListener("click", function() {
+      cell.removeEventListener("click", function () {
         checkPlay(cells, this.dataset.index);
       });
     });
   };
+
+  const newRound = () => {
+    playBoard.gridBoard = ["", "", "", "", "", "", "", "", ""];
+    player1.playArr = [];
+    player2.playArr = [];
+  }
 })();

@@ -26,13 +26,17 @@ section {
 }
 
 #inputsContainer {
-    display: grid; 
-    margin: auto; 
-    width: 450px; 
+    display: grid;
+    margin: auto;
+    width: 450px;
     margin-top: 40px;
     text-align: center;
 }
 
 button {
-    width: 140px; 
+    width: 140px;
+}
+
+.modal {
+    display: hidden;
 }
