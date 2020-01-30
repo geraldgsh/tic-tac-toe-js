@@ -1,5 +1,5 @@
 const playBoard = (() => {
-  const gridBoard = ['', '', '', '', '', '', '', '', ''];
+  const gridBoard = ["", "", "", "", "", "", "", "", ""];
   const winningCombination = [
     [0, 1, 2],
     [3, 4, 5],
@@ -10,23 +10,26 @@ const playBoard = (() => {
     [1, 4, 7],
     [2, 5, 8]
   ];
-  
-  return { gridBoard, winningCombination};
+
+  return { gridBoard, winningCombination };
 })();
 
-const playerGenerator = (name, mark, wins) => {
+const playerGenerator = (name, mark, wins, playArr) => {
   return {
     name,
     mark,
-    wins
+    wins,
+    playArr
   };
 };
 
 const gameEngine = (() => {
   console.log("game engine started");
   // declaration of the players
-  var player1 = playerGenerator("", "X", 0);
-  var player2 = playerGenerator("", "O", 0);
+  var player1 = playerGenerator("", "X", 0, []);
+  var player2 = playerGenerator("", "O", 0, []);
+  let playerX = [];
+  let playerO = [];
 
   const start = () => {
     var sq = document.getElementById("squares");
@@ -89,31 +92,59 @@ const gameEngine = (() => {
     setStatus(`It's ${currPlayer.name}'s turn!`);
   };
 
+  const changePlay = () => {};
+
   const checkWinner = () => {
-    if (
-      (playBoard.gridBoard[0]  && playBoard.gridBoard[1]  && playBoard.gridBoard[2] ) ||
-      (playBoard.gridBoard[3]  && playBoard.gridBoard[4]  && playBoard.gridBoard[5] ) ||
-      (playBoard.gridBoard[6]  && playBoard.gridBoard[7]  && playBoard.gridBoard[8] ) ||
-      (playBoard.gridBoard[0]  && playBoard.gridBoard[3]  && playBoard.gridBoard[6] ) ||
-      (playBoard.gridBoard[1]  && playBoard.gridBoard[4]  && playBoard.gridBoard[7] ) ||
-      (playBoard.gridBoard[2]  && playBoard.gridBoard[5]  && playBoard.gridBoard[8] ) ||
-      (playBoard.gridBoard[0]  && playBoard.gridBoard[4]  && playBoard.gridBoard[8] ) ||
-      (playBoard.gridBoard[2]  && playBoard.gridBoard[4]  && playBoard.gridBoard[6] )
-    ) {
-      console.warn("Win!");
-    }
+    // if (
+    //   (playBoard.gridBoard[0] &&
+    //     playBoard.gridBoard[1] &&
+    //     playBoard.gridBoard[2]) ||
+    //   (playBoard.gridBoard[3] &&
+    //     playBoard.gridBoard[4] &&
+    //     playBoard.gridBoard[5]) ||
+    //   (playBoard.gridBoard[6] &&
+    //     playBoard.gridBoard[7] &&
+    //     playBoard.gridBoard[8]) ||
+    //   (playBoard.gridBoard[0] &&
+    //     playBoard.gridBoard[3] &&
+    //     playBoard.gridBoard[6]) ||
+    //   (playBoard.gridBoard[1] &&
+    //     playBoard.gridBoard[4] &&
+    //     playBoard.gridBoard[7]) ||
+    //   (playBoard.gridBoard[2] &&
+    //     playBoard.gridBoard[5] &&
+    //     playBoard.gridBoard[8]) ||
+    //   (playBoard.gridBoard[0] &&
+    //     playBoard.gridBoard[4] &&
+    //     playBoard.gridBoard[8]) ||
+    //   (playBoard.gridBoard[2] &&
+    //     playBoard.gridBoard[4] &&
+    //     playBoard.gridBoard[6])
+    // ) {
+    //   console.warn("Win!");
+    // }
+
+    console.log(
+      playBoard.winningCombination.forEach(combo => {
+        currPlayer.playArr.includes(combo);
+      })
+    );
   };
 
-  const checkPlay = (cells, cellNum) => {    
+  const checkPlay = (cells, cellNum) => {
     if (playBoard.gridBoard[cellNum] === "") {
       playBoard.gridBoard[cellNum] = currPlayer.mark;
       cells[cellNum].innerHTML += currPlayer.mark;
-      changePlayers();      
-      numPlays ++;
+      currPlayer.playArr.push(cellNum);
+      console.log(currPlayer.playArr);
+      changePlayers();
+      numPlays++;
       checkWinner();
+
+      // detecting a draw
       if (numPlays > 8) {
-        console.log("Tie!");
+        setStatus("It's a tie!");
       }
     }
-  };  
+  };
 })();
