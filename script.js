@@ -95,7 +95,7 @@ const gameEngine = (() => {
     const result = playBoard.winningCombination.some(evt =>
       evt.every(e => arr.includes(e))
     );
-    console.log(result);
+    return result;
   };
 
   const checkPlay = (cells, cellNum) => {
@@ -103,15 +103,29 @@ const gameEngine = (() => {
       playBoard.gridBoard[cellNum] = currPlayer.mark;
       cells[cellNum].innerHTML += currPlayer.mark;
       currPlayer.playArr.push(parseInt(cellNum));
-      console.log(currPlayer.playArr);
-      checkWinner(currPlayer.playArr);
-      changePlayers();
-      numPlays++;
 
-      // detecting a draw
-      if (numPlays > 8) {
-        setStatus("It's a tie!");
+      if (checkWinner(currPlayer.playArr)) {
+        endGame();
+      } else {
+        changePlayers();
+        numPlays++;
+        // detecting a draw
+        if (numPlays > 8) {
+          setStatus("It's a tie!");
+        }
       }
+    } else {
+      setStatus("Stop clicking!!!!11!");
     }
+  };
+
+  const endGame = () => {
+    Object.freeze(playBoard.gridBoard);
+    setStatus(`${currPlayer.name} won!`);
+    cells.forEach(cell => {
+      cell.removeEventListener("click", function() {
+        checkPlay(cells, this.dataset.index);
+      });
+    });
   };
 })();
