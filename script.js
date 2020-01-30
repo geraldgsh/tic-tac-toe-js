@@ -31,8 +31,6 @@ const gameEngine = (() => {
   // declaration of the players
   var player1 = playerGenerator("", "X", 0, []);
   var player2 = playerGenerator("", "O", 0, []);
-  let playerX = [];
-  let playerO = [];
 
   const start = () => {
     var sq = document.getElementById("squares");
@@ -108,10 +106,21 @@ const gameEngine = (() => {
       currPlayer.playArr.push(parseInt(cellNum));
 
       if (checkWinner(currPlayer.playArr)) {
-        const modal = document.querySelector('.modal');
-        modal.style.display = "block";
-        const okayBtn = document.querySelector('.okay');
-        okayBtn.addEventListener('click', newRound);
+        // const modal = document.querySelector('.modal');
+        // modal.style.display = "block";
+        var modal = document.getElementById("myModal");
+        modal.style.display =  "block";
+        var span = document.getElementsByClassName("close")[0];
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        // When the user clicks on x, close it
+        window.onclick = function(event) {
+          if (event.target == close) {
+            modal.style.display = "none";
+            newRound();
+          }
+        }
         endGame();
       } else {
         changePlayers();
@@ -138,8 +147,8 @@ const gameEngine = (() => {
 
   const newRound = () => {
     playBoard.gridBoard = ["", "", "", "", "", "", "", "", ""];
-    player1.playArr = [];
-    player2.playArr = [];
+    var player1 = playerGenerator("", "X", 0, []);
+    var player2 = playerGenerator("", "O", 0, []);
   }
 
   // apparently finished
