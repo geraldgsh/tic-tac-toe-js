@@ -105,8 +105,7 @@ const gameEngine = (() => {
     if (playBoard.gridBoard[cellNum] === "") {
       playBoard.gridBoard[cellNum] = currPlayer.mark;
       cells[cellNum].innerHTML += currPlayer.mark;
-      let cl = document.getElementById("#cell");
-      console.log(cl.dataset.index)
+      console.log(cellindex)
       currPlayer.playArr.push(parseInt(cellNum));
 
       if (checkWinner(currPlayer.playArr)) {
@@ -145,7 +144,6 @@ const gameEngine = (() => {
 
   const newRound = () => {
     playBoard.gridBoard = ["", "", "", "", "", "", "", "", ""];
-
 
     document.querySelectorAll("#cell").innerHTML = "";
 
