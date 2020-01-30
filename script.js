@@ -92,43 +92,26 @@ const gameEngine = (() => {
     setStatus(`It's ${currPlayer.name}'s turn!`);
   };
 
-  const changePlay = () => {};
+  const checkWinner = (arr) => {
 
-  const checkWinner = () => {
     // if (
-    //   (playBoard.gridBoard[0] &&
-    //     playBoard.gridBoard[1] &&
-    //     playBoard.gridBoard[2]) ||
-    //   (playBoard.gridBoard[3] &&
-    //     playBoard.gridBoard[4] &&
-    //     playBoard.gridBoard[5]) ||
-    //   (playBoard.gridBoard[6] &&
-    //     playBoard.gridBoard[7] &&
-    //     playBoard.gridBoard[8]) ||
-    //   (playBoard.gridBoard[0] &&
-    //     playBoard.gridBoard[3] &&
-    //     playBoard.gridBoard[6]) ||
-    //   (playBoard.gridBoard[1] &&
-    //     playBoard.gridBoard[4] &&
-    //     playBoard.gridBoard[7]) ||
-    //   (playBoard.gridBoard[2] &&
-    //     playBoard.gridBoard[5] &&
-    //     playBoard.gridBoard[8]) ||
-    //   (playBoard.gridBoard[0] &&
-    //     playBoard.gridBoard[4] &&
-    //     playBoard.gridBoard[8]) ||
-    //   (playBoard.gridBoard[2] &&
-    //     playBoard.gridBoard[4] &&
-    //     playBoard.gridBoard[6])
+    //   (arr[0] && arr[1] && arr[2]) ||
+    //   (arr[3] && arr[4] && arr[5]) ||
+    //   (arr[6] && arr[7] && arr[8]) ||
+    //   (arr[0] && arr[3] && arr[6]) ||
+    //   (arr[1] && arr[4] && arr[7]) ||
+    //   (arr[2] && arr[5] && arr[8]) ||
+    //   (arr[0] && arr[4] && arr[8]) ||
+    //   (arr[2] && arr[4] && arr[6])
     // ) {
     //   console.warn("Win!");
     // }
 
-    console.log(
-      playBoard.winningCombination.forEach(combo => {
-        currPlayer.playArr.includes(combo);
-      })
-    );
+    playBoard.winningCombination.forEach(combo => {
+      if (arr.some(comb => comb.includes(combo))) {
+        console.log("WIN");
+      }
+    })
   };
 
   const checkPlay = (cells, cellNum) => {
@@ -137,9 +120,10 @@ const gameEngine = (() => {
       cells[cellNum].innerHTML += currPlayer.mark;
       currPlayer.playArr.push(cellNum);
       console.log(currPlayer.playArr);
+      checkWinner(currPlayer.playArr);
       changePlayers();
       numPlays++;
-      checkWinner();
+      
 
       // detecting a draw
       if (numPlays > 8) {
