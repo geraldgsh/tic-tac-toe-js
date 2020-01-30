@@ -151,6 +151,8 @@ const gameEngine = (() => {
       player2 = playerGenerator(player2.name, player2.mark, player2.wins += 1, []);
     }
 
+     document.getElementById("#cell").innnerHTML = "";
+
     cells.forEach(cell => {
       playBoard.gridBoard[cellNum] === "";
     });
