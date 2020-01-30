@@ -105,6 +105,8 @@ const gameEngine = (() => {
     if (playBoard.gridBoard[cellNum] === "") {
       playBoard.gridBoard[cellNum] = currPlayer.mark;
       cells[cellNum].innerHTML += currPlayer.mark;
+      let cl = document.getElementById("#cell");
+      console.log(cl.dataset.index)
       currPlayer.playArr.push(parseInt(cellNum));
 
       if (checkWinner(currPlayer.playArr)) {
@@ -143,6 +145,10 @@ const gameEngine = (() => {
 
   const newRound = () => {
     playBoard.gridBoard = ["", "", "", "", "", "", "", "", ""];
+
+
+    document.querySelectorAll("#cell").innerHTML = "";
+
     if (player1 === currPlayer) {
       player1 = playerGenerator(player1.name, player1.mark, player1.wins += 1, []);
       player2 = playerGenerator(player2.name, player2.mark, player2.wins, []);
@@ -150,10 +156,6 @@ const gameEngine = (() => {
       player1 = playerGenerator(player1.name, player1.mark, player1.wins, []);
       player2 = playerGenerator(player2.name, player2.mark, player2.wins += 1, []);
     }
-
-    cells.forEach(cell => {
-      playBoard.gridBoard[cellNum] === "";
-    });
   }
 
 })();
