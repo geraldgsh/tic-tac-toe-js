@@ -29,8 +29,8 @@ const playerGenerator = (name, mark, wins, playArr) => {
 const gameEngine = (() => {
   console.log("game engine started");
   // declaration of the players
-  var player1 = playerGenerator("", "X", 0, []);
-  var player2 = playerGenerator("", "O", 0, []);
+  let player1 = playerGenerator("", "X", 0, []);
+  let player2 = playerGenerator("", "O", 0, []);
 
   const start = () => {
     var sq = document.getElementById("squares");
@@ -70,6 +70,8 @@ const gameEngine = (() => {
     gameStatus.innerHTML += status.toString();
   };
 
+  setStatus("");
+
   console.warn(player1, player2);
 
   let numPlays = 0;
@@ -106,22 +108,22 @@ const gameEngine = (() => {
       currPlayer.playArr.push(parseInt(cellNum));
 
       if (checkWinner(currPlayer.playArr)) {
-        // const modal = document.querySelector('.modal');
-        // modal.style.display = "block";
         var modal = document.getElementById("myModal");
-        modal.style.display =  "block";
+        modal.style.display = "block";
         var span = document.getElementsByClassName("close")[0];
-        span.onclick = function() {
+        span.onclick = function () {
           modal.style.display = "none";
         }
+
         // When the user clicks on x, close it
-        window.onclick = function(event) {
+        window.onclick = function (event) {
           if (event.target == close) {
             modal.style.display = "none";
-            newRound();
           }
         }
+
         endGame();
+        newRound(cells);
       } else {
         changePlayers();
         numPlays++;
@@ -136,20 +138,22 @@ const gameEngine = (() => {
   };
 
   const endGame = () => {
-    Object.freeze(playBoard.gridBoard);
-    setStatus(`${currPlayer.name} won!`);
-    cells.forEach(cell => {
-      cell.removeEventListener("click", function () {
-        checkPlay(cells, this.dataset.index);
-      });
-    });
+    setStatus(`${currPlayer.name} won!`)
   };
 
   const newRound = () => {
     playBoard.gridBoard = ["", "", "", "", "", "", "", "", ""];
-    var player1 = playerGenerator("", "X", 0, []);
-    var player2 = playerGenerator("", "O", 0, []);
+    if (player1 === currPlayer) {
+      player1 = playerGenerator(player1.name, player1.mark, player1.wins += 1, []);
+      player2 = playerGenerator(player2.name, player2.mark, player2.wins, []);
+    } else {
+      player1 = playerGenerator(player1.name, player1.mark, player1.wins, []);
+      player2 = playerGenerator(player2.name, player2.mark, player2.wins += 1, []);
+    }
+
+    cells.forEach(cell => {
+      playBoard.gridBoard[cellNum] === "";
+    });
   }
 
-  // apparently finished
 })();
