@@ -74,7 +74,6 @@ const gameEngine = (() => {
   let numPlays = 0;
   let currPlayer = player1;
 
-  let board = ["", "", "", "", "", "", "", "", ""];
   let cells = document.querySelectorAll(".cell");
 
   cells.forEach(cell => {
@@ -92,38 +91,22 @@ const gameEngine = (() => {
     setStatus(`It's ${currPlayer.name}'s turn!`);
   };
 
-  const checkWinner = (arr) => {
-
-    // if (
-    //   (arr[0] && arr[1] && arr[2]) ||
-    //   (arr[3] && arr[4] && arr[5]) ||
-    //   (arr[6] && arr[7] && arr[8]) ||
-    //   (arr[0] && arr[3] && arr[6]) ||
-    //   (arr[1] && arr[4] && arr[7]) ||
-    //   (arr[2] && arr[5] && arr[8]) ||
-    //   (arr[0] && arr[4] && arr[8]) ||
-    //   (arr[2] && arr[4] && arr[6])
-    // ) {
-    //   console.warn("Win!");
-    // }
-
-    playBoard.winningCombination.forEach(combo => {
-      if (arr.some(comb => comb.includes(combo))) {
-        console.log("WIN");
-      }
-    })
+  const checkWinner = arr => {
+    const result = playBoard.winningCombination.some(evt =>
+      evt.every(e => arr.includes(e))
+    );
+    console.log(result);
   };
 
   const checkPlay = (cells, cellNum) => {
     if (playBoard.gridBoard[cellNum] === "") {
       playBoard.gridBoard[cellNum] = currPlayer.mark;
       cells[cellNum].innerHTML += currPlayer.mark;
-      currPlayer.playArr.push(cellNum);
+      currPlayer.playArr.push(parseInt(cellNum));
       console.log(currPlayer.playArr);
       checkWinner(currPlayer.playArr);
       changePlayers();
       numPlays++;
-      
 
       // detecting a draw
       if (numPlays > 8) {
