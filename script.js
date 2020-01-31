@@ -98,7 +98,6 @@ const gameEngine = (() => {
   };
   const checkWinner = (arr) => {
     const winCombo = playBoard.winningCombination;
-
     const result = winCombo.some((ele) => ele.every((array) => arr.includes(array)));
     return result;
   };
