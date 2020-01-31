@@ -32,12 +32,17 @@ const gameEngine = (() => {
   let player1 = playerGenerator("", "X", 0, []);
   let player2 = playerGenerator("", "O", 0, []);
 
-  const gameStatus = document.querySelector(".game-status");
+  const status = document.querySelectorAll(".status");
   const setStatus = status => {
-    gameStatus.innerHTML = "";
-    gameStatus.innerHTML += status.toString();
+    status.innerHTML = "";
+    status.innerHTML += status.toString();
   };
-  setStatus("");
+
+  const winner = document.querySelector(".winner-msg");
+  const setWinner = status => {
+    winner.innerHTML = "";
+    winner.innerHTML += status.toString();
+  };
 
   const start = () => {
     var sq = document.getElementById("squares");
@@ -78,7 +83,7 @@ const gameEngine = (() => {
   let cells = document.querySelectorAll(".cell");
 
   cells.forEach(cell => {
-    cell.addEventListener("click", function () {
+    cell.addEventListener("click", function() {
       checkPlay(cells, this.dataset.index);
     });
   });
@@ -90,7 +95,7 @@ const gameEngine = (() => {
       currPlayer = player1;
     }
     setStatus(`It's ${currPlayer.name}'s turn!`);
-   };
+  };
 
   const checkWinner = arr => {
     const result = playBoard.winningCombination.some(evt =>
@@ -106,21 +111,19 @@ const gameEngine = (() => {
       currPlayer.playArr.push(parseInt(cellNum));
 
       if (checkWinner(currPlayer.playArr)) {
-        
         const modal = document.getElementById("myModal");
         modal.style.display = "block";
         endGame();
-        
-        const span = document.getElementsByClassName("close")[0]; 
-        span.onclick = function () {
+
+        const span = document.getElementsByClassName("close")[0];
+        span.onclick = function() {
           modal.style.display = "none";
-          const pieces = document.querySelectorAll('.cell')
+          const pieces = document.querySelectorAll(".cell");
           pieces.forEach(cell => {
             cell.innerHTML = "";
-          })
+          });
           newRound();
-
-        }           
+        };
       } else {
         changePlayers();
         numPlays++;
@@ -135,19 +138,28 @@ const gameEngine = (() => {
   };
 
   const endGame = () => {
-    setStatus(`${currPlayer.name} won!`)
+    setWinner(`Winner is ${currPlayer.name}`);
   };
 
   const newRound = () => {
     playBoard.gridBoard = ["", "", "", "", "", "", "", "", ""];
     if (player1 === currPlayer) {
-      player1 = playerGenerator(player1.name, player1.mark, player1.wins += 1, []);
+      player1 = playerGenerator(
+        player1.name,
+        player1.mark,
+        (player1.wins += 1),
+        []
+      );
       player2 = playerGenerator(player2.name, player2.mark, player2.wins, []);
     } else {
       player1 = playerGenerator(player1.name, player1.mark, player1.wins, []);
-      player2 = playerGenerator(player2.name, player2.mark, player2.wins += 1, []);
+      player2 = playerGenerator(
+        player2.name,
+        player2.mark,
+        (player2.wins += 1),
+        []
+      );
     }
     changePlayers();
-  }
-
+  };
 })();

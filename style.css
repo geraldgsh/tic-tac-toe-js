@@ -37,8 +37,7 @@ button {
     width: 140px;
 }
 
-/* The Modal (background) */
-.modal {
+The Modal (background) .modal {
     display: none;
     /* Hidden by default */
     position: fixed;
@@ -61,7 +60,6 @@ button {
     /* Black w/ opacity */
 }
 
-/* Modal Content */
 .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -70,7 +68,6 @@ button {
     width: 80%;
 }
 
-/* The Close Button */
 .close {
     color: #aaaaaa;
     float: right;
@@ -83,4 +80,10 @@ button {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.game-status {
+    background-color: fuchsia;
+    color: white;
+    z-index: 9999999;
 }
