@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const playBoard = (() => {
   const gridBoard = ['', '', '', '', '', '', '', '', ''];
   const winningCombination = [
@@ -152,3 +153,5 @@ const gameEngine = (() => {
   });
   document.querySelector('.game-restart').addEventListener('click', clearBoard);
 })();
+
+gameEngine.newPlayer();
