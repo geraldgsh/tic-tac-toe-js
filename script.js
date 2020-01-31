@@ -97,12 +97,17 @@ const gameEngine = (() => {
   });
 
   const clearBoard = () => {
+    numPlays = 0;
+    playBoard.gridBoard = ["", "", "", "", "", "", "", "", ""];
+    player1 = playerGenerator(player1.name, player1.mark, player1.wins, []);
+    player2 = playerGenerator(player2.name, player2.mark, player2.wins, []);
     const pieces = document.querySelectorAll('.cell')
     pieces.forEach(cell => {
       cell.innerHTML = "";
     })
-    newRound();
-    numPlays = 0;
+    scoreboard();
+    currPlayer = player1;
+    changePlayers();    
   }
 
   const changePlayers = () => {
