@@ -94,7 +94,9 @@ const gameEngine = (() => {
     changePlayers();
   };
   const checkWinner = (arr) => {
-    const result = playBoard.winningCombination.some((ele) => ele.every((array) => arr.includes(array)));
+    const winCombo = playBoard.winningCombination;
+
+    const result = winCombo.some((ele) => ele.every((array) => arr.includes(array)));
     return result;
   };
   const endGame = () => {
