@@ -32,6 +32,13 @@ const gameEngine = (() => {
   let player1 = playerGenerator("", "X", 0, []);
   let player2 = playerGenerator("", "O", 0, []);
 
+  const gameStatus = document.querySelector(".game-status");
+  const setStatus = status => {
+    gameStatus.innerHTML = "";
+    gameStatus.innerHTML += status.toString();
+  };
+  setStatus("");
+
   const start = () => {
     var sq = document.getElementById("squares");
     newPlayer(player1);
@@ -63,14 +70,6 @@ const gameEngine = (() => {
     return true;
   };
 
-  const gameStatus = document.querySelector(".game-status");
-  const setStatus = status => {
-    gameStatus.innerHTML = "";
-    gameStatus.innerHTML += status.toString();
-  };
-
-  setStatus("");
-
   console.warn(player1, player2);
 
   let numPlays = 0;
@@ -91,7 +90,7 @@ const gameEngine = (() => {
       currPlayer = player1;
     }
     setStatus(`It's ${currPlayer.name}'s turn!`);
-  };
+   };
 
   const checkWinner = arr => {
     const result = playBoard.winningCombination.some(evt =>
@@ -148,7 +147,7 @@ const gameEngine = (() => {
       player1 = playerGenerator(player1.name, player1.mark, player1.wins, []);
       player2 = playerGenerator(player2.name, player2.mark, player2.wins += 1, []);
     }
-    currPlayer = player1;
+    changePlayers();
   }
 
 })();
