@@ -32,16 +32,25 @@ const gameEngine = (() => {
   let player1 = playerGenerator("", "X", 0, []);
   let player2 = playerGenerator("", "O", 0, []);
 
-  const status = document.querySelectorAll(".status");
+  const gameStatus = document.querySelector(".game-status");
   const setStatus = status => {
-    status.innerHTML = "";
-    status.innerHTML += status.toString();
+    gameStatus.innerHTML = "";    
+    gameStatus.innerHTML += status.toString();
   };
+  setStatus("");
 
-  const winner = document.querySelector(".winner-msg");
+  const winner = document.querySelector(".winner-status");
   const setWinner = status => {
     winner.innerHTML = "";
     winner.innerHTML += status.toString();
+  };
+
+  const scoreboard= () => {
+    const score = document.querySelector('.score-board');
+    score.innerHTML = `
+    <p>Player 'X': ${player1.name} ${player1.wins} </p>
+    <p>Player 'O': ${player2.name} ${player2.wins}</p>
+    `;
   };
 
   const start = () => {
@@ -51,13 +60,13 @@ const gameEngine = (() => {
     if (checkNames(player1.name, player2.name)) {
       sq.style.display = "grid";
     }
+    scoreboard();
   };
 
   const startBtn = document.querySelector(".startButton");
   startBtn.addEventListener("click", start);
 
   const newPlayer = player => {
-    // global variable declaration
     if (player === player1) {
       let player1Name = document.querySelector("#playerOneName").value;
       player1.name = player1Name;
@@ -81,12 +90,20 @@ const gameEngine = (() => {
   let currPlayer = player1;
 
   let cells = document.querySelectorAll(".cell");
-
   cells.forEach(cell => {
-    cell.addEventListener("click", function() {
+    cell.addEventListener("click", function () {
       checkPlay(cells, this.dataset.index);
     });
   });
+
+  const clearBoard = () => {
+    const pieces = document.querySelectorAll('.cell')
+    pieces.forEach(cell => {
+      cell.innerHTML = "";
+    })
+    newRound();
+    numPlays = 0;
+  }
 
   const changePlayers = () => {
     if (currPlayer === player1) {
@@ -95,7 +112,7 @@ const gameEngine = (() => {
       currPlayer = player1;
     }
     setStatus(`It's ${currPlayer.name}'s turn!`);
-  };
+   };
 
   const checkWinner = arr => {
     const result = playBoard.winningCombination.some(evt =>
@@ -111,19 +128,17 @@ const gameEngine = (() => {
       currPlayer.playArr.push(parseInt(cellNum));
 
       if (checkWinner(currPlayer.playArr)) {
+        
         const modal = document.getElementById("myModal");
         modal.style.display = "block";
         endGame();
-
-        const span = document.getElementsByClassName("close")[0];
-        span.onclick = function() {
+        
+        const span = document.getElementsByClassName("close")[0]; 
+        span.onclick = function () {
           modal.style.display = "none";
-          const pieces = document.querySelectorAll(".cell");
-          pieces.forEach(cell => {
-            cell.innerHTML = "";
-          });
+          clearBoard();
           newRound();
-        };
+        }           
       } else {
         changePlayers();
         numPlays++;
@@ -138,28 +153,22 @@ const gameEngine = (() => {
   };
 
   const endGame = () => {
-    setWinner(`Winner is ${currPlayer.name}`);
+    numPlays = 0;
+    setWinner(`${currPlayer.name} won!`);
   };
 
   const newRound = () => {
     playBoard.gridBoard = ["", "", "", "", "", "", "", "", ""];
     if (player1 === currPlayer) {
-      player1 = playerGenerator(
-        player1.name,
-        player1.mark,
-        (player1.wins += 1),
-        []
-      );
+      player1 = playerGenerator(player1.name, player1.mark, player1.wins += 1, []);
       player2 = playerGenerator(player2.name, player2.mark, player2.wins, []);
     } else {
       player1 = playerGenerator(player1.name, player1.mark, player1.wins, []);
-      player2 = playerGenerator(
-        player2.name,
-        player2.mark,
-        (player2.wins += 1),
-        []
-      );
+      player2 = playerGenerator(player2.name, player2.mark, player2.wins += 1, []);
     }
+    scoreboard();
     changePlayers();
-  };
+  }
+
+  document.querySelector('.game-restart').addEventListener('click', clearBoard);
 })();
