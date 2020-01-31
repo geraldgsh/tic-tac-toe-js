@@ -65,7 +65,7 @@ const gameEngine = (() => {
   };
   const start = () => {
     document.querySelector('.game-restart').style.display = 'inline-block';
-    document.querySelector('#endGameButton').style.display = 'inline-block';
+    document.querySelector('.endGameButton').style.display = 'inline-block';
     const sq = document.getElementById('squares');
     newPlayer(player1);
     newPlayer(player2);
@@ -98,7 +98,6 @@ const gameEngine = (() => {
   };
   const checkWinner = (arr) => {
     const winCombo = playBoard.winningCombination;
-
     const result = winCombo.some((ele) => ele.every((array) => arr.includes(array)));
     return result;
   };
@@ -154,7 +153,7 @@ const gameEngine = (() => {
     });
   });
   document.querySelector('.game-restart').addEventListener('click', clearBoard);
-  document.querySelector('#endGameButton').addEventListener('click', () => {
+  document.querySelector('.endGameButton').addEventListener('click', () => {
     window.location.reload();
   });
 })();

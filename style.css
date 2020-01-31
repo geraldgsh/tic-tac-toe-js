@@ -86,6 +86,6 @@ button {
 }
 
 .game-restart,
-#endGameButton {
+.endGameButton {
     display: none;
 }
