@@ -64,6 +64,8 @@ const gameEngine = (() => {
     return true;
   };
   const start = () => {
+    document.querySelector('.game-restart').style.display = 'inline-block';
+    document.querySelector('#endGameButton').style.display = 'inline-block';
     const sq = document.getElementById('squares');
     newPlayer(player1);
     newPlayer(player2);
@@ -152,6 +154,9 @@ const gameEngine = (() => {
     });
   });
   document.querySelector('.game-restart').addEventListener('click', clearBoard);
+  document.querySelector('#endGameButton').addEventListener('click', () => {
+    window.location.reload();
+  });
 })();
 
 gameEngine.newPlayer();
