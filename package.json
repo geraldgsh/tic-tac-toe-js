@@ -1,0 +1,13 @@
+{
+  "name": "tic-tac-toe-js",
+  "version": "1.0.0",
+  "main": "script.js",
+  "repository": "https://github.com/geraldgsh/tic-tac-toe-js/",
+  "author": "Izaias Neto <izaiasneto4@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.0"
+  }
+}
