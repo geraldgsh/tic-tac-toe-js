@@ -60,7 +60,6 @@ const gameEngine = (() => {
       setStatus("Names can't be blank!");
       return false;
     }
-
     return true;
   };
 
@@ -108,22 +107,21 @@ const gameEngine = (() => {
       currPlayer.playArr.push(parseInt(cellNum));
 
       if (checkWinner(currPlayer.playArr)) {
-        var modal = document.getElementById("myModal");
+        
+        const modal = document.getElementById("myModal");
         modal.style.display = "block";
-        var span = document.getElementsByClassName("close")[0];
+        endGame();
+        
+        const span = document.getElementsByClassName("close")[0]; 
         span.onclick = function () {
           modal.style.display = "none";
-        }
+          const pieces = document.querySelectorAll('.cell')
+          pieces.forEach(cell => {
+            cell.innerHTML = "";
+          })
+          newRound();
 
-        // When the user clicks on x, close it
-        window.onclick = function (event) {
-          if (event.target == close) {
-            modal.style.display = "none";
-          }
-        }
-
-        endGame();
-        newRound(cells);
+        }           
       } else {
         changePlayers();
         numPlays++;
@@ -133,7 +131,7 @@ const gameEngine = (() => {
         }
       }
     } else {
-      setStatus("Stop clicking!!!!11!");
+      setStatus("Stop clicking!");
     }
   };
 
@@ -150,15 +148,7 @@ const gameEngine = (() => {
       player1 = playerGenerator(player1.name, player1.mark, player1.wins, []);
       player2 = playerGenerator(player2.name, player2.mark, player2.wins += 1, []);
     }
-    // for(let i = 0; i < cells.length; i++) {
-    //   document.getElementById("#cell-1").innerHTML = "";
-    // }
-
-    document.getElementById("#cell-1").innerHTML = "";
-
-    cells.forEach(cell => {
-      playBoard.gridBoard[cellNum] === "";
-    });
+    currPlayer = player1;
   }
 
 })();
