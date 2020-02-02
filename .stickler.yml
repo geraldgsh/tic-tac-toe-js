@@ -10,3 +10,4 @@ files:
     - 'dist/*'
     - '.eslintrc.json'
     - 'node_modules/*'
+    - 'style.css'

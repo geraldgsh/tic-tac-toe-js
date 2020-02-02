@@ -1,16 +1,9 @@
+button {
+    width: 140px;
+}
+
 body {
     font-family: "Arial", sans-serif;
-}
-
-section {
-    text-align: center;
-}
-
-.game--container {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    width: 306px;
-    margin: 50px auto;
 }
 
 .cell {
@@ -20,19 +13,76 @@ section {
     box-shadow: 0 0 0 1px #333333;
     border: 1px solid #333333;
     cursor: pointer;
-
     line-height: 100px;
     font-size: 60px;
 }
 
-#inputsContainer {
-    display: grid; 
-    margin: auto; 
-    width: 450px; 
-    margin-top: 40px;
-    text-align: center;
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
-button {
-    width: 140px; 
+.close:focus,
+.close:hover {
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;    
+}
+
+.game--container {
+    display: none;
+    grid-template-columns: repeat(3, auto);
+    margin: 50px auto;
+    width: 306px;    
+}
+
+.game-restart,
+.endGameButton {
+    display: none;
+}
+
+#inputsContainer {
+    display: grid;
+    margin: auto;    
+    margin-top: 40px;
+    text-align: center;
+    width: 450px;
+}
+
+/* The Modal (background) */
+.modal {
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+    display: none;
+    height: 100%;
+    /* Full height */
+    left: 0;
+    overflow: auto;
+    /* Enable scroll if needed */
+    position: fixed;
+    /* Stay in place */
+    padding-top: 100px;
+    /* Location of the box */
+    top: 0;
+    width: 100%; 
+    z-index: 1;
+    /* Sit on top */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    border: 1px solid #888;
+    margin: auto;
+    padding: 20px;    
+    width: 80%;
+}
+
+section {
+    text-align: center;
 }
