@@ -1,5 +1,4 @@
 # Microverse Project Title - Tic Tac Toe [Collaborative Project]
-
 Javascript
 
 ### Snapshot
