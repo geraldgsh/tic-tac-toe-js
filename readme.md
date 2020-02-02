@@ -333,7 +333,6 @@ This is a small App for libraries built with JS, CSS & HTML.
 
 Checkout our [wikipage](https://github.com/geraldgsh/tic-tac-toe-js/wiki) for more details. 
 
-
 #### Live Demo
 [Demo](https://geraldgsh.github.io/tic-tac-toe-js/)
 
