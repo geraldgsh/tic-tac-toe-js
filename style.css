@@ -84,3 +84,8 @@ button {
     text-decoration: none;
     cursor: pointer;
 }
+
+.game-restart,
+.endGameButton {
+    display: none;
+}
