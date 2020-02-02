@@ -329,10 +329,12 @@ vii. Click on "End Current Game" to reset players name to blank and wins to 0.
 #### book Library
 This is a small App for libraries built with JS, CSS & HTML.
 
-Built With:
+### Wiki
+
+Checkout our [wikipage](https://github.com/geraldgsh/tic-tac-toe-js/wiki) for more details. 
 
 
-Live Demo
+#### Live Demo
 [Demo](https://geraldgsh.github.io/tic-tac-toe-js/)
 
 #### Getting Started
