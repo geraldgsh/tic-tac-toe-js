@@ -1,16 +1,9 @@
+button {
+    width: 140px;
+}
+
 body {
     font-family: "Arial", sans-serif;
-}
-
-section {
-    text-align: center;
-}
-
-.game--container {
-    display: none;
-    grid-template-columns: repeat(3, auto);
-    width: 306px;
-    margin: 50px auto;
 }
 
 .cell {
@@ -20,9 +13,30 @@ section {
     box-shadow: 0 0 0 1px #333333;
     border: 1px solid #333333;
     cursor: pointer;
-
     line-height: 100px;
     font-size: 60px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.game--container {
+    display: none;
+    grid-template-columns: repeat(3, auto);
+    width: 306px;
+    margin: 50px auto;
 }
 
 #inputsContainer {
@@ -31,10 +45,6 @@ section {
     width: 450px;
     margin-top: 40px;
     text-align: center;
-}
-
-button {
-    width: 140px;
 }
 
 /* The Modal (background) */
@@ -70,22 +80,15 @@ button {
     width: 80%;
 }
 
-/* The Close Button */
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
 
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
+
+
 
 .game-restart,
 .endGameButton {
     display: none;
+}
+
+section {
+    text-align: center;
 }
