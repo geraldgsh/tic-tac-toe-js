@@ -326,7 +326,7 @@ Vi. Click "Restart Game" to clear the board.
 vii. Click on "End Current Game" to reset players name to blank and wins to 0.
 
 #### TIC TAC TOE
-This is a small App for libraries built with JS, CSS & HTML.
+This is a small game app built with JS, CSS & HTML.
 
 ### Wiki
 
