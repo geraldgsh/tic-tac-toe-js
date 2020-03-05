@@ -1,27 +1,5 @@
-/* eslint-disable no-param-reassign */
-const playBoard = (() => {
-  const gridBoard = ['', '', '', '', '', '', '', '', ''];
-  const winningCombination = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-  ];
-  return {
-    gridBoard,
-    winningCombination,
-  };
-})();
-const playerGenerator = (name, mark, wins, playArr) => ({
-  name,
-  mark,
-  wins,
-  playArr,
-});
+import { playBoard } from './board';
+import { playerGenerator } from './playerGenerator';
 
 const gameEngine = (() => {
   // declaration of the players
@@ -158,4 +136,4 @@ const gameEngine = (() => {
   });
 })();
 
-gameEngine.newPlayer();
+export default gameEngine;

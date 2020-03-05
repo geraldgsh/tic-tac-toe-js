@@ -10,4 +10,8 @@ files:
     - 'dist/*'
     - '.eslintrc.json'
     - 'node_modules/*'
-    - 'style.css'
+
+# PLEASE DO NOT enable auto fixing options
+# if you need extra support from you linter - do it in your local env as described in README for this config
+
+# find full documentation here: https://stickler-ci.com/docs
