@@ -1,4 +1,4 @@
-import { playBoard } from './board';
+import { playBoard } from './playBoard';
 import { playerGenerator } from './playerGenerator';
 
 const gameEngine = (() => {

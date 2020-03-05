@@ -288,7 +288,7 @@ About to write to .../package.json:
   "version": "1.0.0",
   "main": "script.js",
   "repository": "https://github.com/geraldgsh/tic-tac-toe-js/",
-  "author": "Izaias Neto <izaiasneto4@gmail.com>",
+  "author": "Gerald Goh",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^6.8.0",
@@ -370,6 +370,8 @@ PASS  ./sum.test.js
 
 Install the @babel/preset-env package;
 
+The current version of Jest as it is does not recognize the import statement. In order for you to be able to use ES6 modules for this project you may do the following:
+
 ```sh
 $ npm i -D @babel/preset-env
 npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.1.2 (node_modules/fsevents):
@@ -382,6 +384,12 @@ added 232 packages from 28 contributors, removed 108 packages, updated 589 packa
   run `npm fund` for details
 
 found 0 vulnerabilities
+
+
+Create a .babelrc file in the project’s root with the following lines of code:
+
+```javascript
+{ "presets": ["@babel/preset-env"] }
 ```
 
 ##### Run jest test
@@ -415,7 +423,7 @@ Edit test;
   "version": "1.0.0",
   "main": "script.js",
   "repository": "https://github.com/geraldgsh/tic-tac-toe-js/",
-  "author": "Izaias Neto <izaiasneto4@gmail.com>",
+  "author": "Gerald Goh",
   "license": "MIT",
   "devDependencies": {
     "eslint": "^6.8.0",
@@ -424,10 +432,6 @@ Edit test;
   }
 }
 ```
-
-Create a .babelrc file in the project’s root with the following lines of code:
-```javascript
-{ "presets": ["@babel/preset-env"] }
 
 #### Setup Webpack
 
@@ -568,10 +572,8 @@ Entrypoint main = main.js
 
 ![](https://github.com/geraldgsh/restaurant-page/blob/development/dist/media/githack.jpg?raw=true)
 
-#### Weather APP
-This is a weather app built with Bulma, Webpack, Bootstrap, JS, CSS & HTML.
-
-```
+#### Tic Tac Toe
+This is a Tic Tac Toe app built with Webpack, JS, CSS & HTML.
 
 #### Test Procedure
 
