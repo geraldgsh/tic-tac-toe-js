@@ -54,3 +54,9 @@ test('Check for winning combination #2', () => {
   expect(gameEngine.checkWinner(player.playArr)).toBe(false);
 });
 
+test('Check for tie', () => {
+  const playerOne = playerGenerator('', '', '', [1, 2, 5, 6, 7]);
+  const playerTwo = playerGenerator('', '', '', [3, 4, 8, 9]);
+  expect(gameEngine.checkWinner(playerOne.playArr)).toBe(false);
+  expect(gameEngine.checkWinner(playerTwo.playArr)).toBe(false);
+});
