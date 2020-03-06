@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import gameEngine from './modules/gameEngine';
 
 const eventHandler = (() => {

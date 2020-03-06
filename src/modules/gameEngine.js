@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { playBoard } from './playBoard';
 import { playerGenerator } from './playerGenerator';
 
@@ -138,7 +139,6 @@ const gameEngine = (() => {
     cells.forEach((cell) => {
       cell.addEventListener('click', function setEvtListener() {
         checkPlay(cells, this.dataset.index);
-        console.log(cells);
       });
     });
   })();
