@@ -5,7 +5,8 @@
   "scripts": {
     "build": "webpack --mode development",
     "test": "jest",
-    "watch": "webpack --progress --watch"
+    "watch": "webpack --progress --watch",
+    "pretest": "npm run build"
   },
   "repository": "https://github.com/geraldgsh/tic-tac-toe-js/",
   "author": "Gerald Goh",
