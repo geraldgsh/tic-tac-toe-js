@@ -49,7 +49,7 @@ test('Check for non-winning combination #1', () => {
   expect(gameEngine.checkWinner(currPlayer.playArr)).toBe(false);
 });
 
-test('Check for winning combination #2', () => {
+test('Check for non-winning combination #2', () => {
   const player = playerGenerator('', '', '', [5, 3, 1, 8]);
   expect(gameEngine.checkWinner(player.playArr)).toBe(false);
 });
