@@ -599,7 +599,7 @@ This is a small App for libraries built with JS, CSS & HTML.
 Checkout our [wikipage](https://github.com/geraldgsh/tic-tac-toe-js/wiki) for more details. 
 
 #### Live Demo
-[Demo](https://geraldgsh.github.io/tic-tac-toe-js/)
+[Demo](https://rawcdn.githack.com/geraldgsh/tic-tac-toe-js/bf7d6bc85e6fea664d8413bdc2e591eaf5019333/dist/index.html)
 
 #### Getting Started
 Clone repo and run index.html
