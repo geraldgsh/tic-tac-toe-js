@@ -27,9 +27,7 @@ You can find the original project specification at: https://www.theodinproject.c
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-
-  <body>
-    
+  <body>  
 
     <section>
       <h1 class="game--title">Tic Tac Toe</h1>
@@ -267,47 +265,315 @@ Go project folder using WSL environment and initiate NPM with following command
 
 ```javascript
 npm init
+
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help json` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install <pkg>` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (testing-practice)
+version: (1.0.0)
+keywords:
+author: Gerald Goh
+license: (ISC)
+About to write to .../package.json:
+
+{
+  "name": "tic-tac-toe-js",
+  "version": "1.0.0",
+  "main": "script.js",
+  "repository": "https://github.com/geraldgsh/tic-tac-toe-js/",
+  "author": "Gerald Goh",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.0"
+  }
+}
+
+Is this OK? (yes) yes
 ```
 
 Command above will generate a "package.json" file for ESlint work off from.
 
-Install ESlint with following command
+##### Install ESlint
 
 ```sh
-npm install eslint
+$ npm install eslint
+npm notice created a lockfile as package-lock.json. You should commit this file.
++ eslint@6.8.0
+added 123 packages from 83 contributors and audited 179 packages in 8.979s
+
+3 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
 ```
 
 Run the following to configure eslint in project root folder
 
 ```sh
-eslint --init
+$ eslint --init
+? How would you like to use ESLint? To check syntax, find problems, and enforce code style
+? What type of modules does your project use? JavaScript modules (import/export)
+? Which framework does your project use? None of these
+? Does your project use TypeScript? No
+? Where does your code run? Browser
+? How would you like to define a style for your project? Use a popular style guide
+? Which style guide do you want to follow? Airbnb: https://github.com/airbnb/javascript
+? What format do you want your config file to be in? JSON
+Checking peerDependencies of eslint-config-airbnb-base@latest
+The config that you've selected requires the following dependencies:
+
+eslint-config-airbnb-base@latest eslint@^5.16.0 || ^6.1.0 eslint-plugin-import@^2.18.2
+? Would you like to install them now with npm? No
+Successfully created .eslintrc.json file in /mnt/d/Google_Drive/Microverse/5.Javascript/6.testing/testing-practice-js
 ```
 
-with the following setup.
-
-`? How would you like to use ESLint?` To check syntax, find problems, and enforce code style
-
-`? What type of modules does your project use?` JavaScript modules (import/export)
-
-`? Which framework does your project use?` None of these
-
-`? Does your project use Typescript` No
-
-`? Where does your code run?` Browser
-
-`? How would you like to define a style for your project?` Use a popular style guide
-
-`? Which style guide do you want to follow?` Airbnb
-
-`? What format do you want your config file to be in?` JSON
-
-`? The config that you've selected requires the following dependencies: Would you like to install them now with npm?` Yes
-
-Start ESlint with this command.
+Run ESlint
 
 ```sh
 eslint script.js
 ```
+
+##### Install Jest
+
+```javascript
+$ npm install --save-dev jest
+npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.1.2 (node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
++ jest@25.1.0
+added 537 packages from 248 contributors, removed 4 packages and audited 1204208 packages in 39.256s
+
+29 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+```
+
+Finally, run yarn test or npm run test and Jest will print this message:
+
+```sh
+PASS  ./sum.test.js
+✓ adds 1 + 2 to equal 3 (5ms)
+```
+
+##### Install Babel
+
+Install the @babel/preset-env package;
+
+The current version of Jest as it is does not recognize the import statement. In order for you to be able to use ES6 modules for this project you may do the following:
+
+```sh
+$ npm i -D @babel/preset-env
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.1.2 (node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.1.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
++ @babel/preset-env@7.8.6
+added 232 packages from 28 contributors, removed 108 packages, updated 589 packages and audited 1208996 packages in 54.596s
+
+31 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+
+Create a .babelrc file in the project’s root with the following lines of code:
+
+```javascript
+{ "presets": ["@babel/preset-env"] }
+```
+
+##### Run jest test
+
+```sh
+$ npm test
+
+> testing-practice@1.0.0 test /mnt/d/Google_Drive/Microverse/5.Javascript/6.testing/testing-practice-js
+> jest
+
+ PASS  capitalize/capitalize.test.js
+ PASS  reverseString/reverseString.test.js
+ PASS  arrayAnalysis/arrayAnalysis.test.js
+ PASS  calculator/calculator.test.js
+ PASS  ceasarCipher/caesarCipher.test.js
+
+Test Suites: 5 passed, 5 total
+Tests:       14 passed, 14 total
+Snapshots:   0 total
+Time:        3.607s
+Ran all test suites.
+```
+
+Edit test;
+
+```sh
+./package.json
+
+{
+  "name": "tic-tac-toe-js",
+  "version": "1.0.0",
+  "main": "script.js",
+  "repository": "https://github.com/geraldgsh/tic-tac-toe-js/",
+  "author": "Gerald Goh",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.0"
+  }
+}
+```
+
+#### Setup Webpack
+
+Install webpack;
+
+```sh
+$ npm install webpack webpack-cli --save-dev
+npm WARN rollback Rolling back readable-stream@2.3.6 failed (this is probably harmless): EINVAL: invalid argument, lstat '.../tic-tac-toe-js/node_modules/fsevents/node_modules'
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.11 (node_modules/fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.11: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+
++ webpack-cli@3.3.11
++ webpack@4.42.0
+added 360 packages from 209 contributors and audited 5675 packages in 20.167s
+
+19 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+```
+
+Now we'll create the following directory structure, files and their contents:
+
+Create;
+./webpack.config.js
+
+```javascript
+const path = require('path');
+
+module.exports = {
+  mode: 'production',
+  entry: './src/index.js',
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|gif|jpeg)$/,
+        use: [
+          'file-loader',
+        ],
+      },
+    ],
+  },
+};
+```
+
+Webpack can watch files and recompile whenever they change. Turn on watch mode. This means that after the initial build, webpack will continue to watch for changes in any of the resolved files.
+
+```javascript
+./package.json
+
+{
+  "name": "tic-tac-toe-js",
+  "version": "1.0.0",
+  "main": "'./src/index.js'",
+  "scripts": {
+    "build": "webpack --mode development",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --progress --watch"
+  },
+  "repository": "https://github.com/geraldgsh/tic-tac-toe-js/",
+  "author": "Gerald Goh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/geraldgsh/tic-tac-toe-js/issues"
+  },
+  "homepage": "https://github.com/geraldgsh/tic-tac-toe-js#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.8.6",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.0",
+    "jest": "^25.1.0",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
+```
+
+Run "yarn build"
+
+```javascript
+$ yarn build
+yarn run v1.21.1
+$ webpack --mode development
+Hash: 87bba94788336242806f
+Version: webpack 4.41.6
+Time: 102ms
+Built at: 02/21/2020 5:33:18 AM
+  Asset      Size  Chunks             Chunk Names
+main.js  12.3 KiB    main  [emitted]  main
+Entrypoint main = main.js
+[./src/index.js] 1.23 KiB {main} [built]
+[./src/modules/DOMControl.js] 3.12 KiB {main} [built]
+[./src/modules/localControl.js] 1.6 KiB {main} [built]
+Done in 2.67s.
+```
+
+Or run "yarn watch" to start.
+```javascript
+$ yarn watch
+
+yarn run v1.21.1
+$ webpack --watch
+
+webpack is watching the files…
+
+Hash: c1487def981e257fe947
+Version: webpack 4.41.6
+Time: 392ms
+Built at: 02/21/2020 5:34:39 AM
+  Asset      Size  Chunks             Chunk Names
+main.js  1.55 KiB       0  [emitted]  main
+Entrypoint main = main.js
+[0] ./src/index.js + 2 modules 5.96 KiB {0} [built]
+    | ./src/index.js 1.23 KiB [built]
+    | ./src/modules/DOMControl.js 3.12 KiB [built]
+    | ./src/modules/localControl.js 1.6 KiB [built]
+```
+
+#### Steps to publish Page to Githack
+
+1. Navigate to "dist/index.html" on GitHub Page Repo then copy URL (step #1) as illustrated below
+
+![](https://github.com/geraldgsh/restaurant-page/blob/development/dist/media/Github-index.jpg?raw=true)
+
+2. Go to https://raw.githack.com/, paste GitHub directory into input box (step #2) to generate URL (step #3) illustrated below.
+
+![](https://github.com/geraldgsh/restaurant-page/blob/development/dist/media/githack.jpg?raw=true)
+
+#### Tic Tac Toe
+This is a Tic Tac Toe app built with Webpack, JS, CSS & HTML.
 
 #### Test Procedure
 
@@ -325,8 +591,8 @@ Vi. Click "Restart Game" to clear the board.
 
 vii. Click on "End Current Game" to reset players name to blank and wins to 0.
 
-#### TIC TAC TOE
-This is a small game app built with JS, CSS & HTML.
+#### Tic-Tac-Toe App
+This is a small App for libraries built with JS, CSS & HTML.
 
 ### Wiki
 

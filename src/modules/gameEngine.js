@@ -1,27 +1,6 @@
-/* eslint-disable no-param-reassign */
-const playBoard = (() => {
-  const gridBoard = ['', '', '', '', '', '', '', '', ''];
-  const winningCombination = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-  ];
-  return {
-    gridBoard,
-    winningCombination,
-  };
-})();
-const playerGenerator = (name, mark, wins, playArr) => ({
-  name,
-  mark,
-  wins,
-  playArr,
-});
+/* eslint-disable no-unused-vars */
+import { playBoard } from './playBoard';
+import { playerGenerator } from './playerGenerator';
 
 const gameEngine = (() => {
   // declaration of the players
@@ -29,17 +8,25 @@ const gameEngine = (() => {
   let player2 = playerGenerator('', 'O', 0, []);
   let numPlays = 0;
   let currPlayer = player1;
-  const gameStatus = document.querySelector('.game-status');
+
+  const checkWinner = (arr) => {
+    const winCombo = playBoard.winningCombination;
+    const result = winCombo.some((ele) => ele.every((array) => arr.includes(array)));
+    return result;
+  };
+
   const setStatus = (status) => {
+    const gameStatus = document.querySelector('.game-status');
     gameStatus.innerHTML = '';
     gameStatus.innerHTML += status.toString();
   };
-  setStatus('');
-  const winner = document.querySelector('.winner-status');
+
   const setWinner = (status) => {
+    const winner = document.querySelector('.winner-status');
     winner.innerHTML = '';
     winner.innerHTML += status.toString();
   };
+
   const scoreboard = () => {
     const score = document.querySelector('.score-board');
     score.innerHTML = `
@@ -47,6 +34,7 @@ const gameEngine = (() => {
     <p>Player 'O': ${player2.name} ${player2.wins} win(s)</p>
     `;
   };
+
   const newPlayer = (player) => {
     if (player === player1) {
       const player1Name = document.querySelector('#playerOneName').value;
@@ -56,6 +44,7 @@ const gameEngine = (() => {
       player2.name = player2Name;
     }
   };
+
   const checkNames = (name1, name2) => {
     if (name1 === '' || name2 === '') {
       setStatus("Names can't be blank!");
@@ -63,6 +52,7 @@ const gameEngine = (() => {
     }
     return true;
   };
+
   const start = () => {
     document.querySelector('.game-restart').style.display = 'inline-block';
     document.querySelector('.endGameButton').style.display = 'inline-block';
@@ -74,8 +64,7 @@ const gameEngine = (() => {
     }
     scoreboard();
   };
-  const startBtn = document.querySelector('.startButton');
-  startBtn.addEventListener('click', start);
+
   const changePlayers = () => {
     if (currPlayer === player1) {
       currPlayer = player2;
@@ -84,6 +73,7 @@ const gameEngine = (() => {
     }
     setStatus(`It's ${currPlayer.name}'s turn!`);
   };
+
   const clearBoard = () => {
     numPlays = 0;
     playBoard.gridBoard = ['', '', '', '', '', '', '', '', ''];
@@ -96,15 +86,12 @@ const gameEngine = (() => {
     scoreboard();
     changePlayers();
   };
-  const checkWinner = (arr) => {
-    const winCombo = playBoard.winningCombination;
-    const result = winCombo.some((ele) => ele.every((array) => arr.includes(array)));
-    return result;
-  };
+
   const endGame = () => {
     numPlays = 0;
     setWinner(`${currPlayer.name} won!`);
   };
+
   const newRound = () => {
     if (player1 === currPlayer) {
       player1 = playerGenerator(player1.name, player1.mark, player1.wins += 1, []);
@@ -117,6 +104,7 @@ const gameEngine = (() => {
     changePlayers();
     scoreboard();
   };
+
   const checkPlay = (cells, cellNum) => {
     if (playBoard.gridBoard[cellNum] === '') {
       playBoard.gridBoard[cellNum] = currPlayer.mark;
@@ -136,7 +124,6 @@ const gameEngine = (() => {
         };
       } else {
         changePlayers();
-        numPlays += 1;
         // detecting a draw
         if (numPlays > 8) {
           setStatus("It's a tie!");
@@ -146,16 +133,21 @@ const gameEngine = (() => {
       setStatus('Stop clicking!');
     }
   };
-  const cells = document.querySelectorAll('.cell');
-  cells.forEach((cell) => {
-    cell.addEventListener('click', function setEvtListener() {
-      checkPlay(cells, this.dataset.index);
+
+  const cellInput = (() => {
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach((cell) => {
+      cell.addEventListener('click', function setEvtListener() {
+        checkPlay(cells, this.dataset.index);
+      });
     });
-  });
-  document.querySelector('.game-restart').addEventListener('click', clearBoard);
-  document.querySelector('.endGameButton').addEventListener('click', () => {
-    window.location.reload();
-  });
+  })();
+
+  return {
+    checkWinner,
+    clearBoard,
+    start,
+  };
 })();
 
-gameEngine.newPlayer();
+export default gameEngine;
