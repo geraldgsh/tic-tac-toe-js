@@ -124,6 +124,7 @@ const gameEngine = (() => {
         };
       } else {
         changePlayers();
+        numPlays += 1;
         // detecting a draw
         if (numPlays > 8) {
           setStatus("It's a tie!");
